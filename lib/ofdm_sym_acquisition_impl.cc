@@ -66,7 +66,7 @@ namespace gr {
                 uint16_t peak_index = 0;
                 uint32_t d_datain_length = (uint32_t)datain_length;
                 #else
-                unsigned int peak_index = 0;
+                uint16_t peak_index = 0;
                 int d_datain_length = datain_length;
                 #endif
                 bool success = true;

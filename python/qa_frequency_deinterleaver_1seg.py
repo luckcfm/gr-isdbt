@@ -54,7 +54,7 @@ class qa_frequency_deinterleaver_1seg (gr_unittest.TestCase):
         
         src_data = src_data*total_segments*3
 
-	expected_result = range(96*2**(mode-1))*total_segments*3
+        expected_result = list(range(96*2**(mode-1)))*total_segments*3
 
         src = blocks.vector_source_c(src_data, False, total_carriers)
         dst = blocks.vector_sink_c(total_carriers)
@@ -83,7 +83,7 @@ class qa_frequency_deinterleaver_1seg (gr_unittest.TestCase):
         
         src_data = src_data*total_segments
 
-	expected_result = range(96*2**(mode-1))*total_segments
+        expected_result = list(range(96*2**(mode-1)))*total_segments
 
         src = blocks.vector_source_c(src_data, False, total_carriers)
         dst = blocks.vector_sink_c(total_carriers)
@@ -112,7 +112,7 @@ class qa_frequency_deinterleaver_1seg (gr_unittest.TestCase):
         src_data = (32, 26, 69, 51, 35, 61, 8, 39, 46, 10, 87, 34, 20, 23, 74, 15, 38, 6, 22, 45, 55, 50, 41, 42, 95, 59, 52, 76, 33, 68, 80, 60, 89, 88, 25, 37, 47, 79, 27, 48, 73, 85, 63, 66, 78, 36, 18, 82, 40, 62, 91, 9, 14, 94, 64, 5, 44, 77, 92, 29, 67, 49, 90, 2, 31, 13, 17, 54, 81, 53, 21, 19, 58, 16, 56, 84, 70, 43, 28, 75, 0, 7, 93, 72, 71, 11, 57, 65, 83, 12, 86, 30, 3, 1, 4, 24)
         src_data = src_data*total_segments
 
-	expected_result = range(96*2**(mode-1))*total_segments
+        expected_result = list(range(96*2**(mode-1)))*total_segments
 
         src = blocks.vector_source_c(src_data, False, total_carriers)
         dst = blocks.vector_sink_c(total_carriers)
@@ -123,9 +123,9 @@ class qa_frequency_deinterleaver_1seg (gr_unittest.TestCase):
 
         # check data
         actual_result = dst.data()
-        print "src data: ", src_data
-        print "actual result: ", actual_result
-        print "expected result: ", expected_result
+        print("src data: ", src_data)
+        print("actual result: ", actual_result)
+        print("expected result: ", expected_result)
         self.assertFloatTuplesAlmostEqual(expected_result, actual_result)
 
 

@@ -143,7 +143,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 0
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -158,11 +158,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -181,7 +181,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         #print "expected: ", reordered_expected_result
         #print "actual: ", actual_result
@@ -201,7 +201,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 1
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -216,11 +216,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -239,7 +239,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
         
         #print actual_result
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
@@ -256,7 +256,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 2
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -271,11 +271,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -294,7 +294,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 
@@ -309,7 +309,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 3
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -324,11 +324,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -347,7 +347,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 
@@ -363,7 +363,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 0
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -378,11 +378,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -401,7 +401,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 
@@ -416,7 +416,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 1
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -431,11 +431,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -454,7 +454,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 
@@ -469,7 +469,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 2
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -484,11 +484,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -507,7 +507,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 
@@ -522,7 +522,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 3
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -537,11 +537,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -560,7 +560,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 
@@ -575,7 +575,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 0
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -590,11 +590,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -613,7 +613,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 
@@ -628,7 +628,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 1
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -643,11 +643,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -666,7 +666,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 
@@ -681,7 +681,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 2
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -696,11 +696,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -719,7 +719,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 
@@ -734,7 +734,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
 
         # the input are the carrier index in each carrier. The
         # expected result in this case is easy to calculate (see below)
-        src_data = range(total_carriers)*2
+        src_data = list(range(total_carriers))*2
         
         sym_index = 3
         tag = gr.tag_utils.python_to_tag({'offset':0, 'key':gr.pmt.string_to_symbol("relative_symbol_index"), 'value':gr.pmt.from_long(sym_index)})
@@ -749,11 +749,11 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         
         # the expected result are all data carriers (indexed as originally when all carriers were present)
         disordered_segments = (11, 9, 7, 5, 3, 1, 0, 2, 4, 6, 8, 10, 12)
-        expected_result = range(total_carriers)
+        expected_result = list(range(total_carriers))
         # I remove the CP
         expected_result.remove(total_carriers-1)
         # I remove the SP
-        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)/12)]
+        sp_list = [12*i+3*sym_index for i in range((total_carriers-1)//12)]
         expected_result = [item for item in expected_result if item not in sp_list]
         # i then remove the tmcc
         tmcc_list = []
@@ -772,7 +772,7 @@ class qa_tmcc_decoder (gr_unittest.TestCase):
         reordered_expected_result = []
         for segment in range(13):
             where = disordered_segments.index(segment)
-            reordered_expected_result = reordered_expected_result + expected_result[where*total_data_carriers/13:(where+1)*total_data_carriers/13]
+            reordered_expected_result = reordered_expected_result + expected_result[int(where*total_data_carriers/13):int((where+1)*total_data_carriers/13)]
 
         self.assertFloatTuplesAlmostEqual(reordered_expected_result*2, actual_result)
 

@@ -54,6 +54,7 @@ list(APPEND isdbt_sources
     hierarchical_combinator_impl.cc
     carrier_modulation_impl.cc
     byte_interleaver_impl.cc
+    tsp_resize_impl.cc
     energy_dispersal_impl.cc
     tmcc_encoder_impl.cc
 )

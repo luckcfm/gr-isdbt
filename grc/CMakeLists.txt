@@ -47,6 +47,7 @@ install(FILES
     isdbt_hierarchical_combinator.block.yml
     isdbt_carrier_modulation.block.yml
     isdbt_byte_interleaver.block.yml
+      isdbt_tsp_resize.block.yml
     isdbt_energy_dispersal.block.yml
     isdbt_tmcc_encoder.block.yml DESTINATION share/gnuradio/grc/blocks
 )
